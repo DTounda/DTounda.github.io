@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important;}</style></noscript>
 </head>
 <body>
 
@@ -27,34 +28,41 @@
 
 <main>
   <section class="hero container">
-    <span class="eyebrow">Software Engineer · In Training</span>
-    <h1>Lesly Nana Tounda</h1>
-    <p class="lede">
-      I build small, useful systems for problems I've actually seen up close —
-      a campus booking app, a bilingual crop advisory tool, a parking finder.
-      Currently training as a full-stack engineer at African Leadership
-      University, and teaching French on the side.
-    </p>
-    <div class="status-line">
-      <span>&gt; based in Kigali, Rwanda · open to freelance &amp; internship work</span>
-      <span class="cursor" aria-hidden="true"></span>
-    </div>
-    <div class="hero-actions">
-      <a href="portfolio.html" class="btn btn-primary">See my work</a>
-      <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <span class="eyebrow">Software Engineer · In Training</span>
+        <h1>Lesly Nana Tounda</h1>
+        <p class="lede">
+          I build small, useful systems for problems I've actually seen up close —
+          a campus booking app, a bilingual crop advisory tool, a parking finder.
+          Currently training as a full-stack engineer at African Leadership
+          University, and teaching French on the side.
+        </p>
+        <div class="status-line">
+          <span data-typewriter>&gt; based in Kigali, Rwanda · open to freelance &amp; internship work</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </div>
+        <div class="hero-actions">
+          <a href="portfolio.html" class="btn btn-primary">See my work</a>
+          <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap reveal">
+        <img src="profile.jpg" alt="Portrait of Lesly Nana Tounda" class="hero-photo" width="208" height="208">
+      </div>
     </div>
   </section>
 
   <section class="stats container">
-    <div class="stat-card">
-      <span class="num">5</span>
+    <div class="stat-card reveal">
+      <span class="num" data-count-to="5">0</span>
       <span class="label">Projects Built</span>
     </div>
-    <div class="stat-card">
+    <div class="stat-card reveal">
       <span class="num">FR / EN</span>
       <span class="label">Bilingual · C2</span>
     </div>
-    <div class="stat-card">
+    <div class="stat-card reveal">
       <span class="num">2nd</span>
       <span class="label">ALU Innovation Challenge, 2025</span>
     </div>
@@ -66,12 +74,12 @@
       <h2>What I'm building &amp; learning</h2>
     </div>
     <div class="card-grid">
-      <div class="card">
+      <div class="card reveal">
         <span class="card-tag">Team project</span>
         <h3>CampusNav</h3>
         <p>A campus room-booking and indoor-navigation web app — I own the booking system, authentication, and admin panel.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <span class="card-tag">Teaching</span>
         <h3>French, on Preply</h3>
         <p>Tutoring conversational and exam-prep French (DELF/TCF/TEF) for learners around the world.</p>
