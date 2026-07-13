@@ -1,23 +1,23 @@
 /* =========================================================
    Lesly Nana Tounda — Resume Site
-   Design system: engineering-notebook aesthetic.
-   Fraunces (personality/warmth) + IBM Plex Sans (precision)
-   + IBM Plex Mono (system/log-style annotations).
+   Design system: soft, welcoming, and light.
+   Fraunces (warmth) + IBM Plex Sans (clarity)
+   + IBM Plex Mono (quiet technical detail).
    ========================================================= */
 
 :root {
   /* Color */
-  --bg: #FAFAF8;
+  --bg: #F5F9FD;
   --card: #FFFFFF;
-  --ink: #16232B;
-  --ink-soft: #445059;
-  --structural: #1F4E5C;   /* deep teal-slate */
-  --structural-dark: #163841;
-  --accent: #E3A324;       /* warm amber — used sparingly */
-  --accent-ink: #6B4A0E;   /* accent color darkened, for text-on-light use */
-  --sage: #5C8368;         /* muted secondary, for tech tags */
-  --line: #DDE3DE;
-  --line-soft: #EAEEEA;
+  --ink: #2C3E50;
+  --ink-soft: #64748B;
+  --structural: #4A7FBD;   /* soft welcoming blue */
+  --structural-dark: #35608F;
+  --accent: #F4A896;       /* soft pastel coral, used for warmth */
+  --accent-ink: #B85C3E;   /* accent color deepened, for text-on-light use */
+  --sage: #6FA37F;         /* soft muted sage, for tech tags */
+  --line: #DCE8F5;
+  --line-soft: #EEF5FC;
 
   /* Type */
   --font-display: "Fraunces", Georgia, serif;
@@ -27,7 +27,7 @@
   /* Layout */
   --container: 1120px;
   --radius: 6px;
-  --shadow: 0 1px 2px rgba(22, 35, 43, 0.04), 0 6px 20px rgba(22, 35, 43, 0.06);
+  --shadow: 0 1px 2px rgba(44, 62, 80, 0.05), 0 6px 20px rgba(74, 127, 189, 0.08);
 }
 
 * { box-sizing: border-box; }
@@ -44,7 +44,12 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 88% -8%, #DCEEFF 0%, transparent 42%),
+    radial-gradient(circle at -8% 18%, #FFE7DC 0%, transparent 38%),
+    radial-gradient(circle at 96% 62%, #E4F5E9 0%, transparent 32%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -60,7 +65,14 @@ h1, h2, h3 {
   font-weight: 500;
 }
 
-h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 600; }
+h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  background: linear-gradient(115deg, var(--ink) 50%, var(--structural) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
 h3 { font-size: 1.15rem; font-weight: 600; font-family: var(--font-body); }
 
@@ -108,7 +120,7 @@ a:hover { color: var(--accent-ink); }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(250, 250, 248, 0.9);
+  background: rgba(245, 249, 253, 0.88);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
@@ -284,13 +296,13 @@ a:hover { color: var(--accent-ink); }
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--accent-ink);
-  background: #FBF1DC;
-  border: 1px solid #F0DDAA;
+  background: #FDEEEA;
+  border: 1px solid #F6D5C9;
   border-radius: 4px;
   padding: 0.2em 0.6em;
   width: fit-content;
 }
-.card-tag.award { color: var(--structural); background: #E7F0EE; border-color: #CBDFDA; }
+.card-tag.award { color: var(--structural-dark); background: #E9F1FB; border-color: #CFE0F3; }
 .card h3 { margin-bottom: 0; }
 .card p { font-size: 0.95rem; margin-bottom: 0.25rem; }
 .card-links a { font-size: 0.85rem; font-family: var(--font-mono); }
@@ -306,7 +318,7 @@ a:hover { color: var(--accent-ink); }
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--sage);
-  background: #EEF3EF;
+  background: #EAF5EE;
   border-radius: 4px;
   padding: 0.2em 0.55em;
 }
@@ -415,8 +427,8 @@ a:hover { color: var(--accent-ink); }
   font-family: var(--font-mono);
   font-size: 0.85rem;
   color: var(--structural);
-  background: #E7F0EE;
-  border: 1px solid #CBDFDA;
+  background: #E9F1FB;
+  border: 1px solid #CFE0F3;
   border-radius: var(--radius);
   padding: 0.8em 1em;
   margin-top: 1rem;
@@ -425,8 +437,8 @@ a:hover { color: var(--accent-ink); }
 /* --- Footer --- */
 .site-footer {
   border-top: 1px solid var(--line);
-  background: var(--structural);
-  color: #EAF2F0;
+  background: var(--line-soft);
+  color: var(--ink-soft);
   margin-top: 3rem;
 }
 .site-footer .container {
@@ -439,19 +451,19 @@ a:hover { color: var(--accent-ink); }
   gap: 1rem;
 }
 .site-footer p {
-  color: #C9DBD7;
+  color: var(--ink-soft);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   margin: 0;
 }
 .footer-links { display: flex; gap: 1.25rem; }
 .footer-links a {
-  color: #EAF2F0;
+  color: var(--structural-dark);
   font-family: var(--font-mono);
   font-size: 0.8rem;
   text-decoration: none;
 }
-.footer-links a:hover { color: var(--accent); }
+.footer-links a:hover { color: var(--accent-ink); }
 
 /* --- Hero with photo --- */
 .hero-grid {
@@ -467,6 +479,10 @@ a:hover { color: var(--accent-ink); }
   position: relative;
   width: 208px;
   height: 208px;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 .hero-photo-wrap::before {
   content: "";
@@ -484,7 +500,8 @@ a:hover { color: var(--accent-ink); }
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  box-shadow: 0 22px 45px -18px rgba(22, 35, 43, 0.45);
+  box-shadow: 0 22px 45px -18px rgba(74, 127, 189, 0.35);
+  animation: float 5s ease-in-out infinite;
 }
 
 /* --- Scroll reveal --- */
@@ -517,7 +534,7 @@ a:hover { color: var(--accent-ink); }
 }
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 22px 42px -20px rgba(22, 35, 43, 0.3);
+  box-shadow: 0 22px 42px -20px rgba(74, 127, 189, 0.22);
   border-color: var(--accent);
 }
 .stat-card {
@@ -525,7 +542,7 @@ a:hover { color: var(--accent-ink); }
 }
 .stat-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 42px -20px rgba(22, 35, 43, 0.3);
+  box-shadow: 0 22px 42px -20px rgba(74, 127, 189, 0.22);
 }
 .contact-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -538,6 +555,12 @@ a:hover { color: var(--accent-ink); }
 }
 
 /* --- Responsive --- */
+@media (max-width: 980px) {
+  .hero-grid { gap: 2rem; }
+  .hero-photo-wrap, .hero-photo { width: 172px; height: 172px; }
+  .card-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+}
+
 @media (max-width: 720px) {
   .nav-toggle { display: inline-block; }
   .nav-links {
