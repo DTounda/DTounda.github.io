@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var message = document.getElementById('message').value.trim();
 
       var subject = encodeURIComponent('Portfolio contact from ' + name);
-      var body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+      var body = encodeURIComponent(message + '\n\nFrom ' + name + ' (' + email + ')');
       var mailto = 'mailto:toundanana@gmail.com?subject=' + subject + '&body=' + body;
 
       var success = document.getElementById('form-success');
