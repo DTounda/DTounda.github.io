@@ -224,20 +224,20 @@ var P=[
  stack:["React Native","Expo","Node.js","Express","MongoDB","Jest","GitHub Actions"],
  links:[["Source","https://github.com/DTounda/Foundation_Project_The_Sentinels"],["API health check","https://medicheck-api-x1pd.onrender.com/api/v1/health"]],
  note:"Free hosting: the API can take about 40 seconds to wake."},
-{id:"pesa",n:"Pesa Ledger",t:"Mobile-money back-end",st:["","Runs locally with Docker"],
+{id:"pesa",n:"Pesa Ledger",t:"Mobile-money back-end",st:["live","Live demo"],
  line:"A wallet API, like a small M-Pesa or MoMo, where money cannot be lost, duplicated or spent twice.",
  body:"Every transaction writes two ledger entries that sum to zero, and a reconciliation endpoint proves the books balance. A retried request with the same idempotency key returns the original payment, and accounts are locked in a fixed order so two payments cannot spend the same money. A mobile-first wallet app sits on top.",
  flow:["Client request","Replay check","Lock accounts","Write 2 entries"],
  proof:[["10 of 50","simultaneous transfers of 100 succeed from a balance of 1,000; final balance 0"],["0 errors","across 1,000 random transfers between 20 accounts, books balanced"],["17 tests","plus a stress test that runs on every push"]],
  stack:["Python","FastAPI","PostgreSQL","Docker","pytest","GitHub Actions"],
- links:[["Source","https://github.com/DTounda/pesa-ledger"]]},
-{id:"agroshield",n:"AgroShield",t:"Fintech hackathon",st:["","Hackathon project"],
+ links:[["Open the app","https://pesa-ledger.netlify.app/"],["Source","https://github.com/DTounda/pesa-ledger"]]},
+{id:"agroshield",n:"AgroShield",t:"Fintech hackathon",st:["live","Live demo"],
  line:"Parametric crop insurance for Rwandan smallholders that pays out when satellites detect drought.",
  body:"NASA POWER rainfall data triggers payouts automatically, so nobody assesses claims by hand. Distribution runs through SACCO branches and payouts go out by mobile money. Built for the BNR Fintech Innovation Hackathon 2026.",
  flow:["NASA POWER rainfall","Drought trigger","Payout","Mobile money"],
- proof:[["NASA POWER","satellite rainfall is the trigger"],["0","manual claims assessments"],["SACCO","branches as the distribution channel"]],
- stack:["NASA POWER data","Fintech","Mobile money"],
- links:[],note:"No public repository."},
+ proof:[["6 districts","live 30-day rainfall from NASA POWER"],["60 / 180 mm","drought and flood thresholds trigger the payout"],["0","field assessments or paperwork"]],
+ stack:["React","Vite","NASA POWER API","Netlify"],
+ links:[["Open the demo","https://agroshield-demo.netlify.app"],["Source","https://github.com/DTounda/AgroShield"]]},
 {id:"cropcare",n:"Crop Care Advisor",t:"Web app and infrastructure",st:["live","Live"],
  line:"Add everything you grow and get one care schedule, plus a warning when two crops cannot share a bed.",
  body:"Search any plant, filter by sun and water needs, and build a garden. The app generates a monthly care plan and detects conflicting growing needs. The API key stays on the server and lookups are cached, so the daily request limit is not wasted. I deployed it on two web servers behind a load balancer.",
@@ -281,7 +281,7 @@ var EXP=[
  b:["Designed and ran surveys and interviews with 80+ youth and households to map why children were not in school.","The association adopted my report as its reference document."]}
 ];
 
-var NAMES=["help","about","experience","education","projects","project","skills","achievements","contact","all","theme","clear","whoami","history"];
+var NAMES=["help","about","experience","education","projects","project","skills","achievements","contact","links","all","theme","clear","whoami","history"];
 var hist=[],hi=0,seen=0;
 
 /* output builders */
@@ -297,7 +297,7 @@ function who(){
     '<p class="p dim" style="margin-top:16px">Type '+cmd("help")+', or tap a command below. Try '+cmd("experience")+' or '+cmd("projects")+'.</p>';
 }
 function help(){
-  var r=[["about","My mission and why I build"],["experience","Roles, with what I delivered"],["projects","Eight projects, with proof"],["project 1","Open one project, by number or name"],["skills","What I build with and ship with"],["education","Degree and results"],["achievements","Prizes and highlights"],["contact","Email, GitHub, LinkedIn"],["all","Everything, in one go"],["theme","Switch light and dark"],["clear","Clear the screen"]];
+  var r=[["about","My mission and why I build"],["experience","Roles, with what I delivered"],["projects","Eight projects, with proof"],["project 1","Open one project, by number or name"],["skills","What I build with and ship with"],["education","Degree and results"],["achievements","Prizes and highlights"],["links","Every project: live app and GitHub"],["contact","Email, GitHub, LinkedIn"],["all","Everything, in one go"],["theme","Switch light and dark"],["clear","Clear the screen"]];
   return '<div class="h">Commands</div>'+r.map(function(x){return '<div class="rw">'+cmd(x[0])+'<span class="dim">'+e(x[1])+'</span></div>'}).join("")+
     '<p class="p dim" style="margin-top:10px">Tab completes a command. Up and down arrows bring back earlier ones.</p>';
 }
@@ -360,9 +360,16 @@ function contact(){
   '<div class="lk"><a href="https://github.com/DTounda" target="_blank" rel="noopener">GitHub</a><a href="https://linkedin.com/in/nana-dorcase-64a355312" target="_blank" rel="noopener">LinkedIn</a></div>'+
   '<p class="note">Based in Kigali, Rwanda. Replies in English or French.</p>';
 }
+function links(){
+  var rows=P.map(function(p){
+    var l=p.links.map(function(x){return '<a href="'+x[1]+'" target="_blank" rel="noopener">'+e(x[0])+'</a>'}).join("");
+    return '<div class="job"><div class="t">'+e(p.n)+' <span class="st '+(p.st[0]||"")+'">'+e(p.st[1])+'</span></div><div class="lk">'+l+'</div>'+(p.links.some(function(x){return /^(Open|API)/.test(x[0])})?'':'<p class="note">No live deployment. '+cmd("project "+p.id,"See how it runs")+'.</p>')+'</div>';
+  }).join("");
+  return '<div class="h">All project links</div><div class="tl">'+rows+'</div><div class="lk" style="margin-top:12px"><a href="https://github.com/DTounda" target="_blank" rel="noopener">All repositories on GitHub</a></div>';
+}
 function all(){return [about(),experience(),education(),projects(),skills(),achievements(),contact()].join('<div style="height:26px"></div>')}
 
-var HANDLERS={help:help,about:about,experience:experience,exp:experience,education:education,projects:projects,project:project,skills:skills,achievements:achievements,contact:contact,all:all,whoami:who};
+var HANDLERS={help:help,about:about,experience:experience,exp:experience,education:education,projects:projects,project:project,skills:skills,achievements:achievements,contact:contact,links:links,all:all,whoami:who};
 
 /* run */
 function add(html,cls){var d=document.createElement("div");d.className="blk"+(cls?" "+cls:"");d.innerHTML=html;out.appendChild(d);return d}
@@ -440,7 +447,7 @@ try{var th=localStorage.getItem("ln-theme2");if(th==="light"||th==="dark")root.s
 $("tgl").addEventListener("click",toggle);
 
 /* dock chips */
-var chips=[["about"],["experience"],["projects"],["skills"],["education"],["contact"],["help"],["show everything","all"]];
+var chips=[["about"],["experience"],["projects"],["links"],["skills"],["education"],["contact"],["help"],["show everything","all"]];
 $("dock").innerHTML=chips.map(function(c){return '<button type="button" class="ch'+(c[1]?" all":"")+'" data-run="'+(c[1]||c[0])+'">'+c[0]+"</button>"}).join("");
 
 /* welcome avatar and guided tip */
